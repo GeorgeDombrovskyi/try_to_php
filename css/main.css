@@ -1,13 +1,22 @@
 
-/* ------------------ this is TOP MENU space ------------------ */
+
+body{
+    /* We use Div for button, so for not change cursor image I use this */
+    cursor:default; 
+}
+
+/* ------------------ TOP MENU space ------------------ */
 .topMenuDiv{
     display: flex;
     flex-direction: row;
+    border:solid red 1px;
 
 }
 
 .topMenu{
     padding-left: 10vw;
+    display: flex;
+    flex-direction: row;
 }
 
 .topMenuButton{
@@ -30,16 +39,20 @@
     border-radius: 2px;
     padding: 3px;
     background-color: yellow; 
-    text-decoration: none;
+    /* text-decoration: none; */
 
 }
 
 .loginButton:hover{
     background-color: rgb(215, 215, 17);  
 
+
 }
 
-/* ------------------ this is BIG BOARD space ------------------ */
+/* ------------------  BIG BOARD space ------------------ */
+.bigBoardDiv{
+    border: solid blue 1px;
+}
 
 .loginBoard{
     display: none;
@@ -58,5 +71,14 @@
 }
 
 .searchBoard{
+    display: none;
+}
+
+/* ----------- LOGIN space ----------- */
+.checkUser{
+    display: block;
+}
+
+.registUser{
     display: none;
 }
