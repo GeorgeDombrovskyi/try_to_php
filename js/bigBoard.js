@@ -1,4 +1,4 @@
-// for BIG BOARD
+// ----------------- BIG BOARD -----------------
 function showBoard(classNaming) {
     
     // Hide all div elements in bigBoard
@@ -12,7 +12,9 @@ function showBoard(classNaming) {
     document.querySelector(`.${classNaming}`).style.display = 'block';
 }
 
-// for LOGIN - REGISTRATION form
+
+
+// ----------------- LOGIN - REGISTRATION form -----------------
 function changeLogReg(classNaming) {
 
     // Hide all div elements in LoginPage

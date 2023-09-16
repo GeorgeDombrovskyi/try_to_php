@@ -1,84 +1,78 @@
-
-
-body{
-    /* We use Div for button, so for not change cursor image I use this */
-    cursor:default; 
+body {
+  /* We use Div for button, so for not change cursor image I use this */
+  cursor: default;
 }
 
 /* ------------------ TOP MENU space ------------------ */
-.topMenuDiv{
-    display: flex;
-    flex-direction: row;
-    border:solid red 1px;
-
+.topMenuDiv {
+  display: flex;
+  flex-direction: row;
+  border: solid red 1px;
 }
 
-.topMenu{
-    padding-left: 10vw;
-    display: flex;
-    flex-direction: row;
+.topMenu {
+  padding-left: 10vw;
+  display: flex;
+  flex-direction: row;
 }
 
-.topMenuButton{
-    padding: 3px;
-    background-color: rgb(68, 183, 255); 
-    border-bottom: 3px solid rgb(68, 183, 255);
+.topMenuButton {
+  padding: 3px;
+  background-color: rgb(68, 183, 255);
+  border-bottom: 3px solid rgb(68, 183, 255);
 }
 
-.topMenuButton:hover{
-    border-bottom: 3px solid rgb(0, 115, 255);
-    /* margin-top: 20px; */
+.topMenuButton:hover {
+  border-bottom: 3px solid rgb(0, 115, 255);
+  /* margin-top: 20px; */
 }
 
-.loginButtonDiv{
-    padding-left: 10vw;
-}
-    
-.loginButton{
-    border: solid;
-    border-radius: 2px;
-    padding: 3px;
-    background-color: yellow; 
-    /* text-decoration: none; */
-
+.loginButtonDiv {
+  padding-left: 10vw;
 }
 
-.loginButton:hover{
-    background-color: rgb(215, 215, 17);  
+.loginButton {
+  border: solid;
+  border-radius: 2px;
+  padding: 3px;
+  background-color: yellow;
+  /* text-decoration: none; */
+}
 
-
+.loginButton:hover {
+  background-color: rgb(215, 215, 17);
 }
 
 /* ------------------  BIG BOARD space ------------------ */
-.bigBoardDiv{
-    border: solid blue 1px;
+.bigBoardDiv {
+  border: solid blue 1px;
 }
 
-.loginBoard{
-    display: none;
+.loginBoard {
+  display: none;
 }
 
-.videoBoard{
-    display: block;
+.videoBoard {
+  display: block;
 }
 
-.daylicBoard{
-    display: none;
+.dailyQBoard {
+  display: none;
 }
 
-.wordsBoard{
-    display: none;
+.wordsBoard {
+  display: none;
 }
 
-.searchBoard{
-    display: none;
+.searchBoard {
+  display: none;
 }
 
 /* ----------- LOGIN space ----------- */
-.checkUser{
-    display: block;
+.checkUser {
+  display: block;
 }
 
-.registUser{
-    display: none;
+.registUser {
+  display: none;
 }
