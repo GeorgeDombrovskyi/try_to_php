@@ -4,28 +4,37 @@ $(document).ready(function () {
   $('#loginForm').submit(function (e) {
     e.preventDefault(); // Prevent the default form submission
 
+    console.log('login try');
+
     // Get the VALUE from the input field
     let login = $('input[name="log-login"]').val();
     let password = $('input[name="log-password"]').val();
+
+    console.log('login - ' + login)
+    console.log('pass - ' + password)
+
 
     // for dont show OLD messages, and reCheck after button click
     document.querySelector('.warnSymb').style.display = "none";
     document.querySelector('.warnLenLog').style.display = "none";
     document.querySelector('.warnLenPass').style.display = "none";
-    document.querySelector('.warnRep').style.display = "none";
+    document.querySelector('.warnNotUser').style.display = "none";
+
 
     // For check value on this speccial symbols
     let symb = /['";\-\/':<>|,^()!*_{}=%\\&+#$]|echo/g;
 
     // Check values on match with special symbols
-    var matchesLoging = login.match(symb);
+    var matchesLogin = login.match(symb);
     var matchesPassword = password.match(symb);
+    // var matchesEmail = email.match(symb);
 
     console.log(login + ' - ' + login.length)
     // If we founded special symbols on any of input fields, show ATANCION div
-    if (matchesLoging || matchesPassword) {
-      console.log("Matches found:", matchesLoging);
+    if (matchesLogin || matchesPassword ) {
+      console.log("Matches found:", matchesLogin);
       console.log("Matches found:", matchesPassword);
+      // console.log("Matches found:", matchesEmail);
 
       document.querySelector('.warnSymb').style.display = "block";
     }
@@ -46,7 +55,14 @@ $(document).ready(function () {
         data: { login: login, password: password },
 
         success: function (response) {
-          console.log('OK ')
+          console.log('OK ');
+          
+          if (response == 'not found user'){
+            document.querySelector('.warnNotUser').style.display = "block";
+          }
+          else{
+            location.reload();
+          }
         },
 
         error: function () {
@@ -60,6 +76,12 @@ $(document).ready(function () {
 
 
 
+
+
+
+
+
+
 // ------------------- REGISTRATION -------------------
 
 $(document).ready(function () {
@@ -69,29 +91,31 @@ $(document).ready(function () {
     console.log('registration try');
 
     // Get the VALUE from the input field
-    let login = $('input[name="reg-loging"]').val();
+    let login = $('input[name="reg-login"]').val();
     let password = $('input[name="reg-password"]').val();
     let email = $('input[name="reg-email"]').val();
     let repeatPassword = $('input[name="reg-repeatPassword"]').val();
+    let userAvatar = avatar;
 
     // for dont show OLD messages, and reCheck after button click
     document.querySelector('.warnSymb').style.display = "none";
     document.querySelector('.warnLenLog').style.display = "none";
     document.querySelector('.warnLenPass').style.display = "none";
     document.querySelector('.warnRep').style.display = "none";
+    document.querySelector('.warnUserExist').style.display = "none";
 
     // For check value on this speccial symbols
     let symb = /['";\-\/':<>|,^()!*_{}=%\\&+#$]|echo/g;
 
     // Check values on match with special symbols
-    var matchesLoging = login.match(symb);
+    var matchesLogin = login.match(symb);
     var matchesPassword = password.match(symb);
     var matchesEmail = email.match(symb);
 
     console.log(login + ' - ' + login.length)
     // If we founded special symbols on any of input fields, show ATANCION div
-    if (matchesLoging || matchesPassword || matchesEmail) {
-      console.log("Matches found:", matchesLoging);
+    if (matchesLogin || matchesPassword || matchesEmail) {
+      console.log("Matches found:", matchesLogin);
       console.log("Matches found:", matchesPassword);
       console.log("Matches found:", matchesEmail);
 
@@ -114,11 +138,18 @@ $(document).ready(function () {
       $.ajax({
         url: 'php/registrationUser.php',
         type: 'POST',
-        data: { login: login, email: email, password: password },
+        data: { login: login, email: email, password: password, userAvatar: userAvatar },
 
         success: function (response) {
           console.log('OK ');
-          location.reload();
+          if (response == 'Already exist'){
+            document.querySelector('.warnUserExist').style.display = "block";
+          }
+          else{
+            location.reload();
+          }
+
+          // location.reload();
         },
 
         error: function () {
@@ -131,25 +162,31 @@ $(document).ready(function () {
 
 
 
+
+
+
+
+
+
+
 let avatar = 1;
 
 function defAvatar(){
   if (avatar == 1){
-  document.querySelectorAll('.chooseAvatar')[0].style.border="2px solid blue";
+  document.querySelectorAll('.chooseAvatar')[1].style.border="2px solid blue";
   }
   else if (avatar == 2){
-    document.querySelectorAll('.chooseAvatar')[1].style.border="2px solid blue";
-  }
-  else {
     document.querySelectorAll('.chooseAvatar')[2].style.border="2px solid blue";
   }
+  else {
+    document.querySelectorAll('.chooseAvatar')[3].style.border="2px solid blue";
+  }
 }
-defAvatar()
 
 function changeAvatarNum(el){
   avatar = el;
-  document.querySelectorAll('.chooseAvatar')[0].style.border="0px";
   document.querySelectorAll('.chooseAvatar')[1].style.border="0px";
   document.querySelectorAll('.chooseAvatar')[2].style.border="0px";
+  document.querySelectorAll('.chooseAvatar')[3].style.border="0px";
   defAvatar();
 }

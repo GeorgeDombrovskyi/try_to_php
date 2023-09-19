@@ -36,7 +36,11 @@
         </div>
 
         <div class="videoBoard disNone toCenter" >
-
+            <?php 
+            // echo @$_COOKIE['userAvatar'];
+            if(@$_COOKIE['userAvatar'] == ''):
+            ?>
+            <div id="unknowAvatar"><img src="images/avatar0.png" class="chooseAvatar"></div>
             LOGIN
 
             <form id="loginForm" class="checkUser logRegNone">
@@ -48,11 +52,14 @@
                 <button type="submit" name="log-loginButton">LogIn</button>
                 <br><br>
                 <a class="txtHoverLight" onclick="changeLogReg('registUser')">Go to Registration</a>
+                <br><br>
+
+
             </form>
 
             <form id="registarionForm" class="registUser logRegNone">
                 <br><br>
-                <input type="text" name="reg-loging" placeholder="Your Login">
+                <input type="text" name="reg-login" placeholder="Your Login">
                 <br><br>
                 <input type="email" name="reg-email" placeholder="Your Email">
                 <br><br>
@@ -85,8 +92,20 @@
             <div class="warnLenLog" style="display:none"> Login must be 4-20 symbols!</div>
             <div class="warnLenPass" style="display:none"> Password must be 4-20 symbols!</div>
             <div class="warnRep" style="display:none"> Password does not match!</div>
-        </div>
+            <div class="warnNotUser" style="display:none"> Didnt found this User!</div>
+            <div class="warnUserExist" style="display:none"> This User Already Exist!</div>
+            <?php else: ?>
+            <div id="accAva"></div>
+            <a href="php/exitUser.php">Exit</a>
+            <script>
+                let i = <?=$_COOKIE['userAvatar'] ?>;
+                console.log('----' + i);
+                document.getElementById('accAva').innerHTML = '<img src="images/avatar'+i+'.png" class="chooseAvatar">'
+            </script>
+            <?php endif;?>
 
+        </div>
+ 
         <div class="dailyQBoard disNone" >DailyQ Board</div>
         <div class="wordsBoard disNone" >Words Board</div>
         <div class="searchBoard disNone" >Search Board</div>
