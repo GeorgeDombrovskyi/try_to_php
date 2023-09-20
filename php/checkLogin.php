@@ -30,14 +30,23 @@ if ($result) {
         // Fetch the first row as an associative array
         $row = $result->fetch_assoc();
 
-        // Convert data from the row to a string (example using JSON)
+        // We want our inform push to cookie, so before this we REMOVE from this info
+        // user email and password. Just in case.
+        unset($row['email'], $row['password'] );   
+
+        // Convert data from the $row to a string (example using JSON)
         $dataAsString = json_encode($row);
 
+
         // Output the resulting string
-        echo $dataAsString;
+        // echo $dataAsString;
+
+
+
+        // $forCookie = $row['userAvatar']. ',' .$row['login'];
 
         // Set cookie for autorization pur user
-        setcookie('userAvatar', $row['userAvatar'], time() + 3600, "/");
+        setcookie('userAvatar', $dataAsString, time() + 3600, "/");
 
         // If we have nothing from DB, we do this...
     } else {

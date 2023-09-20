@@ -190,3 +190,8 @@ function changeAvatarNum(el){
   document.querySelectorAll('.chooseAvatar')[3].style.border="0px";
   defAvatar();
 }
+
+
+function openAccSetting(){
+
+}
