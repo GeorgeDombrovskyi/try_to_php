@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 
     // For check value on this speccial symbols
-    let symb = /['";\-\/':<>|,^()!*_{}=%\\&+#$]|echo/g;
+    let symb = /['";\-\/':<>|,^()!*_{}=%\\&+@#$]|echo/g;
 
     // Check values on match with special symbols
     var matchesLogin = login.match(symb);

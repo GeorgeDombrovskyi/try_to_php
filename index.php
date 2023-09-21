@@ -7,7 +7,11 @@
     <title>Page Title</title>
     <!-- <meta name='viewport' content='width=device-width, initial-scale=1'> -->
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <script src='js/checkLanguage.js'></script>
+    <script src='dictionaries/mainPageDict.js'></script>
+
 </head>
+
 
 <body>
     <!------------------------------  TOP MENU  ------------------------------>
@@ -24,7 +28,7 @@
 
         <div class="loginButtonDiv">
             <?php if (@$_COOKIE['userAvatar'] == ''): ?>
-
+                
                 <div class="loginButton" onclick="showBoard('loginBoard')">LogIn</div>
 
             <?php else: ?>
@@ -34,6 +38,7 @@
                 <script>
                     let i = <?=$_COOKIE['userAvatar']?>;
                     document.getElementById('accArea').innerHTML = '<img src="images/avatar'+i.userAvatar+'.png" class="chooseAvatar">'
+
                 </script>
 
             <?php endif;?>
@@ -54,9 +59,9 @@
                     <br><br>
                     <input type="text" name="log-password" placeholder="Your Password">
                     <br><br>
-                    <button type="submit" name="log-loginButton">LogIn</button>
+                    <button type="submit" class="logBut" name="log-loginButton"><script>document.querySelector('.logBut').innerHTML=trns.logBut[lang]</script></button>
                     <br><br>
-                    <a class="txtHoverLight" onclick="changeLogReg('registUser')">Go to Registration</a>
+                    <a class="txtHoverLight goToReg" onclick="changeLogReg('registUser')"><script>document.querySelector('.goToReg').innerHTML=trns.goToReg[lang]</script></a>
                     <br><br>
                 </form>
 
@@ -78,11 +83,15 @@
                     <br><br>
                     <button type="submit" name="reg-loginButton">Registration</button>
                     <br><br>
-                    <a class="txtHoverLight" onclick="changeLogReg('checkUser')">Go to Login</a>
+                    <a class="txtHoverLight goToLog" onclick="changeLogReg('checkUser')"><script>document.querySelector('.goToLog').innerHTML=trns.goToLog[lang]</script></a>
                 </form>
 
-                <div class="warnSymb" style="display:none"> You used symbols!</div>
+
+                <div class="warnSymb" style="display:none"> 
+                    <script>document.querySelector('.warnSymb').innerHTML=trns.warnSymb[lang]</script> </div>
+
                 <div class="warnLenLog" style="display:none"> Login must be 4-20 symbols!</div>
+
                 <div class="warnLenPass" style="display:none"> Password must be 4-20 symbols!</div>
                 <div class="warnRep" style="display:none"> Password does not match!</div>
                 <div class="warnNotUser" style="display:none"> Didnt found this User!</div>
@@ -90,13 +99,16 @@
 
             <?php else: ?>
 
-                <div id="accAva"></div>
+                <div id="accAva" class="avatar">
+                    <img src="images/uaFlag.png" style="width:100px; border-radius:50%">
+                    <img src="images/avatar3.png " style="width:70px; border-radius:50%; position:absolute; border:solid 4px white;">
+                </div>
                 <div id="userLogin"></div>
 
                 <a href="php/exitUser.php">Exit</a>
 
                 <script>
-                    document.getElementById('accAva').innerHTML = '<img src="images/avatar'+i.userAvatar+'.png" class="chooseAvatar">'
+                    // document.getElementById('accAva').innerHTML = '<img src="images/avatar'+i.userAvatar+'.png" class="chooseAvatar">'
                     document.getElementById('userLogin').innerHTML = i.login;
                 </script>
 
@@ -110,7 +122,16 @@
 
     </div>
 
-    <!-- <a href="?reload=true"></a> -->
+
+
+<div class="chooseLang">
+    CHOOSE YOUR LANGUAGE<br>
+    <img src="images/uaFlag.png" class="flag" onclick="chooseLang('2')">
+
+</div>
+
+
+
 
 </body>
 
@@ -119,7 +140,17 @@
 <!-- <script src='js/main.js'></script> -->
 <script src='js/bigBoard.js'></script>
 
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/login.js"></script>
+<!-- <script src='js/translate.js'></script> -->
+<script>
+                        console.log('our lang ', lang)
+                        if(lang == 1){
+                            document.querySelector('.chooseLang').style.display="block"
+                        }
+</script>
 
 </html>

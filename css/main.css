@@ -101,3 +101,29 @@ input::placeholder {
     height: 50px;
     border-radius: 25px;
 }
+
+.avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chooseLang{
+  width: 500px;
+  height: 500px;
+  display: none;
+  border:solid blue 5px;
+  position: absolute;
+  top:0;
+  left:0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.flag{
+  width: 60px;
+  border-radius: 50%;
+}
+
+.flag:hover{
+  border: solid blue;
+}
