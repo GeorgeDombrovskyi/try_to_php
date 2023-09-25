@@ -30,7 +30,6 @@ input::placeholder {
 
 .topMenuButton:hover {
   border-bottom: 3px solid rgb(0, 115, 255);
-  /* margin-top: 20px; */
 }
 
 .loginButtonDiv {
@@ -90,6 +89,7 @@ input::placeholder {
 .txtHoverLight {
   border: solid 1px;
 }
+
 .txtHoverLight:hover {
   color: blue;
 }
@@ -99,15 +99,15 @@ input::placeholder {
 }
 
 .chooseAvatar{
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 
 .avatar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chooseLang{
@@ -131,16 +131,12 @@ input::placeholder {
 }
 
 .translateButton{
-  /* position: fixed;
-  top:85vh;
-  right: 50px; */
   width: 50px;
   height: 50px;
   margin: 4px auto;
   display: block;
   border-radius: 50%;
   opacity: 0.65;
-  /* background-color: aqua; */
 }
 
 .translateButton:hover{
@@ -157,7 +153,6 @@ input::placeholder {
   right: 50px;
   width: 58px;
   height: 58px;
-  /* border: solid 1px green; */
 }
 
 .langUser{

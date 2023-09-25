@@ -31,19 +31,34 @@ if (mb_strlen($login) < 4 || mb_strlen($login) > 20 || mb_strlen($password) < 4 
 
     $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login'");
 
-
+    // Go back the phrase, that give a signal to show message
+    // about "User with this NickName already exist"
     if ($result->num_rows > 0) {
+
         echo 'Already exist';
         exit();
-    }
-    else{
+        
+    } else {
 
-        // Do SQL code that we need
+        // Do SQL code for register new user
         $mysql->query("INSERT INTO `users` (`login`, `email`, `password`, `userAvatar`)
             VALUES('$login', '$email', '$password', '$userAvatar')");
 
-        // set cookie for autorization new user immediately
-        setcookie('userAvatar', $userAvatar, time() + 3600, "/");
+        //  Search this new user in DB
+        $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$password'");
+
+        // Fetch the first row as an associative array
+        $row = $result->fetch_assoc();
+
+        // We want user information push to cookie, so before this we REMOVE from this info
+        // user email and password. Just in case.
+        unset($row['email'], $row['password'] );   
+
+        // Convert data from the $row to a string (example using JSON)
+        $dataAsString = json_encode($row);
+
+        // Set cookie for autorization pur user
+        setcookie('userAvatar', $dataAsString, time() + 3600, "/");
 
         // close the connection with our DB
         $mysql->close();

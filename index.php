@@ -165,6 +165,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/login.js"></script>
+<script src="js/translateButton.js"></script>
 <!-- <script src='js/translate.js'></script> -->
 <script>
                         console.log('our lang ', lang)
@@ -173,71 +174,7 @@
                         }
                         
 
-                        let trnsButton = document.getElementById('translateButton');
-
-
-
-    trnsButton.addEventListener("mousedown", function(event) {
-
-        // myDiv.classList.remove("class1");
-        // myDiv.classList.add("new-class");
-        let disN = document.querySelectorAll('.disN');
-        let disB = document.querySelectorAll('.disB');
-
-        for ( var i=0; i <disN.length; i++){
-            disN[i].style.display='block';
-            disB[i].style.display='none';
-        }
-        // document.querySelector('.disB').style.display="none"
-        // document.querySelector('.disN').style.display="block"
-        // intervalId = setInterval(startFunction, 100); // Adjust the interval as needed
-    }); 
-
-    trnsButton.addEventListener("mouseup", function(event) {
-
-        let disN = document.querySelectorAll('.disN');
-        let disB = document.querySelectorAll('.disB');
-
-        for ( var i=0; i <disN.length; i++){
-            disN[i].style.display='none';
-            disB[i].style.display='block';
-        }
-
-        // document.querySelector('.disN').style.display="none"
-        // document.querySelector('.disB').style.display="block"
-
-        // document.querySelector('.langEng').style.display="block"
-        // document.querySelector('.langUser').style.display="none"
-        // intervalId = setInterval(startFunction, 100); // Adjust the interval as needed
-    });
-
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "Control") {
-                // Ctrl key is pressed, execute the function
-                console.log('you cclick CNTRL')
-                let disN = document.querySelectorAll('.disN');
-        let disB = document.querySelectorAll('.disB');
-
-        for ( var i=0; i <disN.length; i++){
-            disN[i].style.display='block';
-            disB[i].style.display='none';
-        }
-            }
-        });
-
-        document.addEventListener("keyup", function(event) {
-            if (event.key === "Control") {
-                // Ctrl key is pressed, execute the function
-                console.log('you cclick CNTRL')
-                let disN = document.querySelectorAll('.disN');
-        let disB = document.querySelectorAll('.disB');
-
-        for ( var i=0; i <disN.length; i++){
-            disN[i].style.display='none';
-            disB[i].style.display='block';
-        }
-            }
-        });
+    
 </script>
 
 </html>
