@@ -28,16 +28,16 @@
 
         <div class="loginButtonDiv">
             <?php if (@$_COOKIE['userAvatar'] == ''): ?>
-                
-                <div class="loginButton" onclick="showBoard('loginBoard')">LogIn</div>
+
+                <div class="loginButton" onclick="showLoginBoard('loginBoard')">LogIn</div>
 
             <?php else: ?>
 
-                <div id="accArea" onclick="showBoard('loginBoard')"></div>
+                <div id="accArea" onclick="showLoginBoard('loginBoard')"></div>
 
                 <script>
                     let i = <?=$_COOKIE['userAvatar']?>;
-                    document.getElementById('accArea').innerHTML = '<img src="images/avatar'+i.userAvatar+'.png" class="chooseAvatar">'
+                    document.getElementById('accArea').innerHTML = '<img src="images/avatars/avatar'+i.userAvatar+'.png" class="chooseAvatar">'
 
                 </script>
 
@@ -50,7 +50,7 @@
         <div class="loginBoard disNone" >
             <?php if (@$_COOKIE['userAvatar'] == ''): ?>
 
-                <div id="unknowAvatar"><img src="images/avatar0.png" class="chooseAvatar"></div>
+                <div id="unknowAvatar"><img src="images/avatars/avatar0.png" class="chooseAvatar"></div>
                 LOGIN
 
                 <form id="loginForm" class="checkUser logRegNone">
@@ -59,10 +59,23 @@
                     <br><br>
                     <input type="text" name="log-password" placeholder="Your Password">
                     <br><br>
-                    <button type="submit" class="logBut" name="log-loginButton"><script>document.querySelector('.logBut').innerHTML=trns.logBut[lang]</script></button>
+
+                    <div class="logButDiv">
+                    <button type="submit" class="logBut disN" name="log-loginButton"><script>document.querySelector('.logBut').innerHTML=trns.logBut[lang]</script></button>
+                    <button type="submit" class="logBut disB" name="log-loginButton">LOG IN</button>
+                    </div>
+
                     <br><br>
-                    <a class="txtHoverLight goToReg" onclick="changeLogReg('registUser')"><script>document.querySelector('.goToReg').innerHTML=trns.goToReg[lang]</script></a>
+                    <a class="txtHoverLight goToReg disN" onclick="changeLogReg('registUser')"><script>document.querySelector('.goToReg').innerHTML=trns.goToReg[lang]</script></a>
+                    <a class="txtHoverLight goToReg disB" onclick="changeLogReg('registUser')">Go to Registration</a>
                     <br><br>
+                    <div id="langs">
+                        <img src="images/flags/2.png" class="flag" onclick="chooseLang('2')">
+                        <img src="images//flags/3.png" class="flag" onclick="chooseLang('3')">
+                        <div class="saveLang disN" onclick="saveLanguage(lang)"><script>document.querySelector('.saveLang').innerHTML=trns.saveLang[lang]</script></div>
+                        <div class="saveLang disB" onclick="saveLanguage(lang)">Save Language</div>
+                    </div>
+
                 </form>
 
                 <form id="registarionForm" class="registUser logRegNone">
@@ -76,10 +89,10 @@
                     <input type="text" name="reg-repeatPassword" placeholder="Repeat Password">
                     <br><br>
 
-                    <img src="images/avatar1.png" class="chooseAvatar" onclick="changeAvatarNum(1)" alt="Avatar 1">
-                    <img src="images/avatar2.png" class="chooseAvatar" onclick="changeAvatarNum(2)" alt="Avatar 2">
-                    <img src="images/avatar3.png" class="chooseAvatar" onclick="changeAvatarNum(3)" alt="Avatar 3">
-                        
+                    <img src="images/avatars/avatar1.png" class="chooseAvatar" onclick="changeAvatarNum(1)" alt="Avatar 1">
+                    <img src="images/avatars/avatar2.png" class="chooseAvatar" onclick="changeAvatarNum(2)" alt="Avatar 2">
+                    <img src="images/avatars/avatar3.png" class="chooseAvatar" onclick="changeAvatarNum(3)" alt="Avatar 3">
+
                     <br><br>
                     <button type="submit" name="reg-loginButton">Registration</button>
                     <br><br>
@@ -87,7 +100,7 @@
                 </form>
 
 
-                <div class="warnSymb" style="display:none"> 
+                <div class="warnSymb" style="display:none">
                     <script>document.querySelector('.warnSymb').innerHTML=trns.warnSymb[lang]</script> </div>
 
                 <div class="warnLenLog" style="display:none"> Login must be 4-20 symbols!</div>
@@ -100,8 +113,10 @@
             <?php else: ?>
 
                 <div id="accAva" class="avatar">
-                    <img src="images/uaFlag.png" style="width:100px; border-radius:50%">
-                    <img src="images/avatar3.png " style="width:70px; border-radius:50%; position:absolute; border:solid 4px white;">
+
+
+                    <img src="images/flags/2.png" style="width:100px; border-radius:50%">
+                    <img src="images/avatars/avatar3.png " style="width:70px; border-radius:50%; position:absolute; border:solid 4px white;">
                 </div>
                 <div id="userLogin"></div>
 
@@ -126,8 +141,13 @@
 
 <div class="chooseLang">
     CHOOSE YOUR LANGUAGE<br>
-    <img src="images/uaFlag.png" class="flag" onclick="chooseLang('2')">
+    <img src="images/flags/2.png" class="flag" onclick="chooseLangStart('2')">
+    <img src="images/flags/3.png" class="flag" onclick="chooseLangStart('3')">
 
+</div>
+
+<div class="translateButtonDiv">
+<img id="translateButton" class="translateButton"  src="images/another/translate.png">
 </div>
 
 
@@ -151,6 +171,73 @@
                         if(lang == 1){
                             document.querySelector('.chooseLang').style.display="block"
                         }
+                        
+
+                        let trnsButton = document.getElementById('translateButton');
+
+
+
+    trnsButton.addEventListener("mousedown", function(event) {
+
+        // myDiv.classList.remove("class1");
+        // myDiv.classList.add("new-class");
+        let disN = document.querySelectorAll('.disN');
+        let disB = document.querySelectorAll('.disB');
+
+        for ( var i=0; i <disN.length; i++){
+            disN[i].style.display='block';
+            disB[i].style.display='none';
+        }
+        // document.querySelector('.disB').style.display="none"
+        // document.querySelector('.disN').style.display="block"
+        // intervalId = setInterval(startFunction, 100); // Adjust the interval as needed
+    }); 
+
+    trnsButton.addEventListener("mouseup", function(event) {
+
+        let disN = document.querySelectorAll('.disN');
+        let disB = document.querySelectorAll('.disB');
+
+        for ( var i=0; i <disN.length; i++){
+            disN[i].style.display='none';
+            disB[i].style.display='block';
+        }
+
+        // document.querySelector('.disN').style.display="none"
+        // document.querySelector('.disB').style.display="block"
+
+        // document.querySelector('.langEng').style.display="block"
+        // document.querySelector('.langUser').style.display="none"
+        // intervalId = setInterval(startFunction, 100); // Adjust the interval as needed
+    });
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Control") {
+                // Ctrl key is pressed, execute the function
+                console.log('you cclick CNTRL')
+                let disN = document.querySelectorAll('.disN');
+        let disB = document.querySelectorAll('.disB');
+
+        for ( var i=0; i <disN.length; i++){
+            disN[i].style.display='block';
+            disB[i].style.display='none';
+        }
+            }
+        });
+
+        document.addEventListener("keyup", function(event) {
+            if (event.key === "Control") {
+                // Ctrl key is pressed, execute the function
+                console.log('you cclick CNTRL')
+                let disN = document.querySelectorAll('.disN');
+        let disB = document.querySelectorAll('.disB');
+
+        for ( var i=0; i <disN.length; i++){
+            disN[i].style.display='none';
+            disB[i].style.display='block';
+        }
+            }
+        });
 </script>
 
 </html>

@@ -12,6 +12,11 @@ function showBoard(classNaming) {
     document.querySelector(`.${classNaming}`).style.display = 'block';
 }
 
+function showLoginBoard(classNaming){
+  showBoard(classNaming);
+  changeFlagNum()
+}
+
 
 
 // ----------------- LOGIN - REGISTRATION form -----------------
